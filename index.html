@@ -1,11 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gerenciador de Tarefas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .task-form {
+            margin-bottom: 20px;
+        }
+        .task-input {
+            width: calc(100% - 120px);
+            padding: 10px;
+            margin-right: 10px;
+        }
+        .priority-select {
+            width: 100px;
+            padding: 10px;
+            margin-right: 10px;
+        }
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .task-item.high {
+            background-color: #ffcccc;
+        }
+        .task-item.medium {
+            background-color: #cce5ff;
+        }
+        .task-item.low {
+            background-color: #ccffcc;
+        }
+        .task-actions button {
+            margin-left: 5px;
+        }
+    </style>
 </head>
 <body>
-    
+    <h1>Gerenciador de Tarefas</h1>
+    <div class="task-form">
+        <input id="task-input" class="task-input" type="text" placeholder="Nome da tarefa">
+        <select id="priority-select" class="priority-select">
+            <option value="high">Alta (Vermelho)</option>
+            <option value="medium">Média (Azul)</option>
+            <option value="low">Baixa (Verde)</option>
+        </select>
+        <button onclick="addTask()">Adicionar Tarefa</button>
+    </div>
+    <div class="search-bar">
+        <input id="search-input" type="text" placeholder="Pesquisar tarefas" oninput="searchTasks()">
+    </div>
+    <ul id="task-list" class="task-list"></ul>
+
+    <script>
+        let tasks = [];
+
+        function addTask() {
+            const taskInput = document.getElementById('task-input');
+            const prioritySelect = document.getElementById('priority-select');
+
+            const taskValue = taskInput.value.trim();
+            const priorityValue = prioritySelect.value;
+
+            if (taskValue) {
+                const task = {
+                    id: Date.now(),
+                    name: taskValue,
+                    priority: priorityValue,
+                    completed: false
+                };
+                tasks.push(task);
+                taskInput.value = '';
+                displayTasks(tasks);
+            } else {
+                alert("Insira o nome da tarefa.");
+            }
+        }
+
+        function displayTasks(taskArray) {
+            const taskList = document.getElementById('task-list');
+            taskList.innerHTML = '';
+
+            taskArray.forEach(task => {
+                const li = document.createElement('li');
+                li.className = `task-item ${task.priority}`;
+                li.setAttribute('data-id', task.id);
+
+                const taskName = document.createElement('span');
+                taskName.textContent = task.name;
+
+                const taskActions = document.createElement('div');
+                taskActions.className = "task-actions";
+
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Editar';
+                editButton.onclick = () => editTask(task.id);
+
+                const completeButton = document.createElement('button');
+                completeButton.textContent = task.completed ? 'Incompleta' : 'Concluir';
+                completeButton.onclick = () => toggleCompleteTask(task.id);
+
+                const cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Cancelar';
+                cancelButton.onclick = () => removeTask(task.id);
+
+                taskActions.append(editButton, completeButton, cancelButton);
+
+                li.append(taskName, taskActions);
+                taskList.appendChild(li);
+            });
+        }
+
+        function editTask(id) {
+            const task = tasks.find(t => t.id === id);
+            const newTaskName = prompt('Editar tarefa:', task.name);
+            if (newTaskName !== null) {
+                task.name = newTaskName;
+                displayTasks(tasks);
+            }
+        }
+
+        function toggleCompleteTask(id) {
+            const task = tasks.find(t => t.id === id);
+            task.completed = !task.completed;
+            displayTasks(tasks);
+        }
+
+        function removeTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            displayTasks(tasks);
+        }
+
+        function searchTasks() {
+            const searchInput = document.getElementById('search-input');
+            const searchValue = searchInput.value.toLowerCase();
+            const filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(searchValue));
+            displayTasks(filteredTasks);
+        }
+    </script>
 </body>
 </html>
