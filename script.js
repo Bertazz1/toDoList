@@ -40,14 +40,17 @@ function displayTasks(taskArray) {
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar';
         editButton.onclick = () => editTask(task.id);
+        editButton.className = 'edit'
 
         const completeButton = document.createElement('button');
         completeButton.textContent = task.completed ? 'Incompleta' : 'Concluir';
         completeButton.onclick = () => toggleCompleteTask(task.id);
+        completeButton.className = 'complete'
 
         const cancelButton = document.createElement('button');
         cancelButton.textContent = 'Cancelar';
         cancelButton.onclick = () => removeTask(task.id);
+        cancelButton.className = 'cancel'
 
         taskActions.append(editButton, completeButton, cancelButton);
 
