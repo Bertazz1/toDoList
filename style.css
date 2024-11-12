@@ -1,23 +1,36 @@
 body {
     font-family: Arial, sans-serif;
     margin: 50px !important;
+    
 }
+
 .task-form {
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 .task-input {
     width: 100%;
     padding: 10px;
     margin-right: 10px;
+    margin-top: 30px;
+    border-radius: 20px;
 }
 
 .priority-select {
     width: 100%;
     padding: 10px;
+    margin-top: 30px;
+    border-radius: 20px;
 }
 .task-list {
     list-style: none;
     padding: 0;
+    margin-top: 30px;
+}
+h1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 200;
+    font-style: italic;
 }
 .task-item {
     display: flex;
@@ -25,16 +38,16 @@ body {
     align-items: center;
     margin-bottom: 10px;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 .task-item.high {
     background-color: #ffcccc;
 }
 .task-item.medium {
-    background-color: #cce5ff;
+    background-color: #f7c76d;
 }
 .task-item.low {
-    background-color: #ccffcc;
+    background-color: #97d9e2;
 }
 .task-actions button {
     margin-left: 5px;
@@ -61,10 +74,15 @@ button {
     padding: 8px 16px;
     font-size: 14px;
     cursor: pointer;
-    border-radius: 5px !important;
+    border-radius: 20px !important;
     border: 1px solid transparent; 
     transition: all 0.3s ease; 
     color: rgb(3, 3, 3);
+ 
+}
+button.addTask {
+    margin-top: 30px;
+    background-color: #97d9e2;
 }
 
 button.edit {
@@ -103,4 +121,30 @@ button:disabled {
 }
 .logo-ifpr{
     width: 200px;
+}
+:root {
+    --red: rgba(255, 0, 0, 0.5);
+    --orange: rgba(245, 229, 15, 0.575);
+    --blue: rgba(8, 253, 0, 0.5);
+    --white: #faf0e6;
+}
+select option {
+    margin: 40px;
+    background: rgba(175, 141, 209, 0.993);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+   
+}
+select option[value="high"] {
+    background: var(--red);
+    
+}
+select option[value="medium"] {
+    background: var(--orange);
+}
+select option[value="low"] {
+    background: var(--blue);
+}
+.search-input{
+    border-radius: 10px;
 }
