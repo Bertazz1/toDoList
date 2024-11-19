@@ -42,10 +42,28 @@ function displayTasks(taskArray) {
         editButton.onclick = () => editTask(task.id);
         editButton.className = 'edit'
 
+
         const completeButton = document.createElement('button');
         completeButton.textContent = task.completed ? 'Incompleta' : 'Concluir';
-        completeButton.onclick = () => toggleCompleteTask(task.id);
+        completeButton.onclick = function () {
+            modal.style.display = "block";
+        }
+        var modal = document.getElementById("myModal")
+        var close = document.getElementsByClassName("close")[0];
+        close.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        modalCompleteButton.onclick= function (event) {
+            removeTask(task.id);
+            modal.style.display = "none";
+        }
         completeButton.className = 'complete'
+
 
         const cancelButton = document.createElement('button');
         cancelButton.textContent = 'Cancelar';
@@ -66,12 +84,6 @@ function editTask(id) {
         task.name = newTaskName;
         displayTasks(tasks);
     }
-}
-
-function toggleCompleteTask(id) {
-    const task = tasks.find(t => t.id === id);
-    task.completed = !task.completed;
-    displayTasks(tasks);
 }
 
 function removeTask(id) {
