@@ -13,7 +13,7 @@ body {
     padding: 10px;
     margin-right: 10px;
     margin-top: 30px;
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 .priority-select {
@@ -26,6 +26,7 @@ body {
     list-style: none;
     padding: 0;
     margin-top: 30px;
+    
 }
 h1{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -82,23 +83,23 @@ button {
 }
 button.addTask {
     margin-top: 30px;
-    background-color: #97d9e2;
+    background-color: #91f1c1;
 }
 
 button.edit {
-    background-color: #ff9800; 
+    background-color: #faae3c; 
 }
 
 button.complete {
-    background-color: #4CAF50; 
+    background-color: #74ec78; 
 }
 
 button.cancel {
-    background-color: #fc1100; 
+    background-color: #ff7a70; 
 }
 
 button:hover {
-    opacity: 0.8; 
+    opacity: 0.5; 
     transform: translateY(-2px);
 }
 
@@ -132,8 +133,7 @@ select option {
     margin: 40px;
     background: rgba(175, 141, 209, 0.993);
     color: #fff;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-   
+    
 }
 select option[value="high"] {
     background: var(--red);
@@ -146,7 +146,10 @@ select option[value="low"] {
     background: var(--blue);
 }
 .search-input{
-    border-radius: 10px;
+    border-radius: 15px;
+    width: 30%;
+    height: 45px;
+    padding: 10px;
 }
 
 .modal {
