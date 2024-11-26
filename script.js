@@ -1,5 +1,6 @@
 let tasks = [];
 
+//funcao para adicionar tarefas
 function addTask() {
     const taskInput = document.getElementById('task-input');
     const prioritySelect = document.getElementById('priority-select');
@@ -22,6 +23,7 @@ function addTask() {
     }
 }
 
+//mostrar as tarefas
 function displayTasks(taskArray) {
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = '';
@@ -37,15 +39,17 @@ function displayTasks(taskArray) {
         const taskActions = document.createElement('div');
         taskActions.className = "task-actions";
 
+        //botao de edicao
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar';
         editButton.onclick = () => editTask(task.id);
         editButton.className = 'edit'
 
-
+        //botao de completar
         const completeButton = document.createElement('button');
         completeButton.textContent = task.completed ? 'Incompleta' : 'Concluir';
         completeButton.onclick = function () {
+            //mostra o modal
             modal.style.display = "block";
         }
         var modal = document.getElementById("myModal")
@@ -58,7 +62,7 @@ function displayTasks(taskArray) {
                 modal.style.display = "none";
             }
         }
-        modalCompleteButton.onclick= function (event) {
+        modalCompleteButton.onclick = function (event) {
             removeTask(task.id);
             modal.style.display = "none";
         }
