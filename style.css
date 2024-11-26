@@ -157,6 +157,7 @@ select option[value="low"] {
   display: flex; 
   background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4); 
+  
  
 }
 
@@ -167,7 +168,8 @@ select option[value="low"] {
   padding: 20px; 
   font-weight: bold;
   font-size: 28px;
-  float: right;
+  float: center;
+  max-width: 50%;
 }
 
 
